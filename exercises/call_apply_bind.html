@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button class="cta">Hola</button>
+    <button class="cta">Mundo</button>
+    <button class="cta">Nuevo</button>
+    <script>
+      function saludar() {
+        console.log(`hola soy ${this.name} ${this.lastname}`);
+      }
+
+      const richard = {
+        name: "richard",
+        lastname: "fernandez",
+      };
+
+      saludar.call(richard);
+
+      function caminar(metros, direccion) {
+        console.log(`${this.name} camina ${metros}mts hacia ${direccion}`);
+      }
+
+      let obj = [300, "sur"];
+
+      caminar.call(richard, ...obj);
+
+      caminar.apply(richard, obj);
+
+      const daniel = {
+        name: "daniel",
+        lastname: "sanchez",
+      };
+      const danielSaluda = saludar.bind(daniel);
+      danielSaluda();
+
+      const danielCamina = caminar.bind(daniel, 2000);
+      danielCamina("norte");
+
+      // const buttons1 = document.querySelectorAll(".cta");
+      // console.log(buttons1);
+      const buttons = document.getElementsByClassName("cta");
+      console.log(buttons);
+      // buttons.forEach((element) => {
+      //   element.onclick = () => {
+      //     alert("Nunca pares de aprender");
+      //   };
+      // });
+      // buttons.forEach((button) => {
+      // button.addEventListener("click", () => alert("hola"));
+      // button.onclick = () => alert("hola");
+      // });
+      Array.prototype.forEach.call(
+        buttons,
+        (button) => (button.onclick = () => alert("hola"))
+      );
+    </script>
+  </body>
+</html>
