@@ -20,3 +20,4 @@ function fullName(firstName: string, lastName: string = ""): string {
 }
 
 const diego = fullName("Diego");
+console.log(diego);
